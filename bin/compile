@@ -4,20 +4,18 @@ echo "Installing Sentry-CLI"
 # Install Sentry CLI
 cd $1
 
-curl -O -s https://github.com/getsentry/sentry-cli/releases/download/1.47.1/sentry-cli-Linux-x86_64
-mkdir -p vendor/sentry-cli
-mv sentry-cli-Linux-x86_64 vendor/sentry-cli
-# tar -C vendor/sentry-cli -xzf opencv-3.2.0.tar.gz
-# rm opencv-3.2.0.tar.gz
+curl -O -s https://downloads.sentry-cdn.com/sentry-cli/1.47.1/sentry-cli-Linux-x86_64
+tar -C vendor/sentry-cli -xzf sentry-cli-Linux-x86_64
+rm sentry-cli-Linux-x86_64
 
 # creating env variables
-# echo "Creating environment variables."
-# mkdir -p $1/.profile.d
-# cd $1/.profile.d
-# cat <<EOF > Python-OpenCV.sh
-# export PATH="/app/vendor/opencv:\$PATH"
-# export PYTHONPATH="/app/:/app/vendor/opencv/opencv-3.2.0"
-# EOF
+echo "Creating environment variables."
+mkdir -p $1/.profile.d
+cd $1/.profile.d
+cat <<EOF > sentry-cli.sh
+export PATH="/app/vendor/sentry-cli:\$PATH"
+export PYTHONPATH="/app/:/app/vendor/sentry-cli/sentry-cli-Linux-x86_64"
+EOF
 
 echo "Done <-----"
 exit 0
