@@ -1,1 +1,1 @@
-# python-sentry-cli-buildpack
+Python Sentry-CLI buildpack for Heroku-18 stack
