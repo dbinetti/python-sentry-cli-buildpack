@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 
-echo "Installing Sentry-CLI"
+echo "-----> Installing Sentry-CLI"
 # Install Sentry CLI
 mkdir -p $1/vendor/bin
 curl --silent -L -o $1/vendor/bin/sentry-cli https://downloads.sentry-cdn.com/sentry-cli/1.47.1/sentry-cli-Linux-x86_64
 chmod a+x $1/vendor/bin/sentry-cli
 
-echo "Done <-----"
+# Setting environment variables in .profile.d script (sourced at dyno startup)
+echo "-----> Setting Environment Variables"
+mkdir -p "$BUILD_DIR"/.profile.d
+cat <<EOF >"$BUILD_DIR"/.profile.d/sentry-cli.sh
+PATH=$PATH:$HOME/vendor/bin
+EOF
+
+
+echo "-----> Done"
 exit 0
 
-echo "Buildpack installed."
+echo "-----> Buildpack installed"
