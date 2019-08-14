@@ -8,8 +8,8 @@ chmod a+x $1/vendor/bin/sentry-cli
 
 # Setting environment variables in .profile.d script (sourced at dyno startup)
 echo "-----> Setting Environment Variables"
-mkdir -p "$BUILD_DIR"/.profile.d
-cat <<EOF >"$BUILD_DIR"/.profile.d/sentry-cli.sh
+mkdir -p "$1"/.profile.d
+cat <<EOF >"$1"/.profile.d/sentry-cli.sh
 PATH=$PATH:$HOME/vendor/bin
 EOF
 
